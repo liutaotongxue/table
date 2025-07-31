@@ -1,0 +1,14 @@
+{
+    "model_type": "linear",
+    "params": [
+        3.962168099564547,
+        -5.363630555222587
+    ],
+    "param_names": [
+        "a",
+        "b"
+    ],
+    "rmse_mm": 8.8315972616031,
+    "input_data_file": "my_16bit_depth_data.json",
+    "num_data_points": 7
+}

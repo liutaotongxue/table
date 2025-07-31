@@ -1,0 +1,82 @@
+[
+    {
+        "true_mm": 298.0,
+        "reported_mm_roi_median": 75.5
+    },
+    {
+        "true_mm": 175.5,
+        "reported_mm_roi_median": 44.75
+    },
+    {
+        "true_mm": 378.0,
+        "reported_mm_roi_median": 97.5
+    },
+    {
+        "true_mm": 535.0,
+        "reported_mm_roi_median": 138.0
+    },
+    {
+        "true_mm": 535.0,
+        "reported_mm_roi_median": 137.25
+    },
+    {
+        "true_mm": 535.0,
+        "reported_mm_roi_median": 136.75
+    },
+    {
+        "true_mm": 535.0,
+        "reported_mm_roi_median": 136.75
+    },
+    {
+        "true_mm": 1104.0,
+        "reported_mm_roi_median": 268.0
+    },
+    {
+        "true_mm": 1104.0,
+        "reported_mm_roi_median": 269.75
+    },
+    {
+        "true_mm": 1104.0,
+        "reported_mm_roi_median": 268.5
+    },
+    {
+        "true_mm": 1104.0,
+        "reported_mm_roi_median": 269.0
+    },
+    {
+        "true_mm": 1104.0,
+        "reported_mm_roi_median": 268.75
+    },
+    {
+        "true_mm": 999.0,
+        "reported_mm_roi_median": 250.25
+    },
+    {
+        "true_mm": 999.0,
+        "reported_mm_roi_median": 250.25
+    },
+    {
+        "true_mm": 999.0,
+        "reported_mm_roi_median": 250.75
+    },
+    {
+        "true_mm": 766.0,
+        "reported_mm_roi_median": 189.5
+    },
+    {
+        "true_mm": 766.0,
+        "reported_mm_roi_median": 189.0
+    },
+    {
+        "true_mm": 766.0,
+        "reported_mm_roi_median": 188.75
+    },
+    {
+        "true_mm": 766.0,
+        "reported_mm_roi_median": 190.25
+    },
+    {
+        "true_mm": 766.0,
+        "reported_mm_roi_median": 188.5
+    }
+]

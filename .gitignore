@@ -1,0 +1,52 @@
+# 大文件和数据文件
+pre_depth/
+pic/
+results/
+
+# 模型文件
+Aurevo-haoyanli/model/
+*.pt
+
+# 校准数据文件
+biaoding/*.npz
+*.npz
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 发布包
+*.egg-info/
+dist/
+build/
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 环境变量文件
+.env
+.venv
+env/
+venv/
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 配置文件（可能包含敏感信息）
+config.json

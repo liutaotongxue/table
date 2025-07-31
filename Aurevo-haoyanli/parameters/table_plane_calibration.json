@@ -1,0 +1,10 @@
+{
+    "plane_model": [
+        0.06429156183921667,
+        0.08379466415400269,
+        -0.9944068831899706,
+        0.1652994678803162
+    ],
+    "timestamp": 1752828990.9960358,
+    "description": "Table plane calibration data, coefficients [a, b, c, d] for ax+by+cz+d=0"
+}

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(C:/Users/14101/conda/envs/py310/Scripts/pip.exe install open3d)",
+      "Bash(C:/Users/14101/conda/envs/py310/Scripts/pip.exe install ultralytics mediapipe opencv-python)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe Aurevo-haoyanli/main.py)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe main.py)",
+      "Bash(ls:*)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe offline_plane_detection.py)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe Aurevo-haoyanli/offline_plane_detection.py)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe Aurevo-haoyanli/npz_direct.py)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe Aurevo-haoyanli/npz_flexible.py)",
+      "Bash(C:/Users/14101/conda/envs/py310/python.exe:*)"
+    ],
+    "deny": []
+  }
+}
