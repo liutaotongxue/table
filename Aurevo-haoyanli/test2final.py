@@ -157,6 +157,10 @@ class SimpleTableDetector:
             result['point_count'] = len(table_points)
             result['inlier_ratio'] = len(inliers) / len(table_points)
             
+            # 添加内点的质心，用于后续计算d值
+            inlier_points = table_points[inliers]
+            result['inlier_centroid'] = np.mean(inlier_points, axis=0)
+            
             return result
             
         except Exception as e:
@@ -185,7 +189,8 @@ def process_video_sequence(directory_path, min_consensus_frames=10):
                 'file': npz_file.name,
                 'deviation': result['deviation_angle'],
                 'normal': result['normal'],
-                'points': result['point_count']
+                'points': result['point_count'],
+                'centroid': result['inlier_centroid']  # 保存质心
             })
             print(f"  {npz_file.name}: 偏差 {result['deviation_angle']:.1f}°")
     
@@ -263,6 +268,16 @@ def process_video_sequence(directory_path, min_consensus_frames=10):
     refined_consensus_normal = np.median(normal_normals, axis=0)
     refined_consensus_normal = refined_consensus_normal / np.linalg.norm(refined_consensus_normal)
     
+    # 计算平面方程的d值
+    # 收集所有正常帧的质心
+    normal_centroids = np.array([r['centroid'] for r in normal_results])
+    # 计算所有质心的平均值，作为共识平面上的一个点
+    consensus_point = np.mean(normal_centroids, axis=0)
+    # 计算d值：ax + by + cz + d = 0 => d = -(ax + by + cz)
+    d_value = -(refined_consensus_normal[0] * consensus_point[0] + 
+                refined_consensus_normal[1] * consensus_point[1] + 
+                refined_consensus_normal[2] * consensus_point[2])
+    
     # 共识偏差角
     ideal_normal = np.array([0, 0.9999, 0.0131])
     consensus_dot_product = np.dot(refined_consensus_normal, ideal_normal)
@@ -326,9 +341,9 @@ def process_video_sequence(directory_path, min_consensus_frames=10):
     print(f"\n8. 最终结果:")
     print(f"   ► 共识法向量: ({refined_consensus_normal[0]:.6f}, {refined_consensus_normal[1]:.6f}, {refined_consensus_normal[2]:.6f})")
     print(f"   ► 共识偏差角: {consensus_deviation:.4f}°")
-    # 计算共识平面方程（假设平面通过原点附近，d值需要通过实际点计算）
-    print(f"   ► 共识平面方程: {refined_consensus_normal[0]:.6f}x + {refined_consensus_normal[1]:.6f}y + {refined_consensus_normal[2]:.6f}z + d = 0")
-    print(f"      (注：d值需要通过实际桌面点计算)")
+    print(f"   ► 共识平面质心: ({consensus_point[0]:.6f}, {consensus_point[1]:.6f}, {consensus_point[2]:.6f}) m")
+    print(f"   ► 共识平面方程: {refined_consensus_normal[0]:.6f}x + {refined_consensus_normal[1]:.6f}y + {refined_consensus_normal[2]:.6f}z + {d_value:.6f} = 0")
+    print(f"   ► 平面到原点距离: {abs(d_value):.6f} m")
     
     print("="*50)
     
@@ -336,6 +351,14 @@ def process_video_sequence(directory_path, min_consensus_frames=10):
         'status': 'success',
         'consensus_deviation': consensus_deviation,
         'consensus_normal': refined_consensus_normal.tolist(),
+        'consensus_point': consensus_point.tolist(),
+        'plane_d': d_value,
+        'plane_equation': {
+            'a': refined_consensus_normal[0],
+            'b': refined_consensus_normal[1],
+            'c': refined_consensus_normal[2],
+            'd': d_value
+        },
         'mean_deviation': np.mean(normal_deviations),
         'std_deviation': np.std(normal_deviations),
         'min_deviation': np.min(normal_deviations),

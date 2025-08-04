@@ -2,6 +2,8 @@
 pre_depth/
 pic/
 results/
+blg_pic_undisorted/
+zty_depth_pic_undisorted/
 
 # 模型文件
 Aurevo-haoyanli/model/

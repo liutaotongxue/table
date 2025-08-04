@@ -15,7 +15,7 @@ from mpl_toolkits.mplot3d import Axes3D
 CONFIG = {
     # NPZ文件设置
     "NPZ_DIRECTORY": "C:/Users/14101/Desktop/table/pre_depth",
-    "TEST_FILE": "190.npz",
+    "TEST_FILE": "154.npz",
     "BATCH_FILES": ["10.npz", "20.npz", "30.npz", "40.npz", "50.npz", 
                    "60.npz", "70.npz", "80.npz", "90.npz", "100.npz"],
     
@@ -35,9 +35,9 @@ CONFIG = {
     "RANSAC_ITERATIONS": 2000,
     
     # 桌面检测参数
-    "HEIGHT_TOLERANCE": 0.03,
+    "HEIGHT_TOLERANCE": 0.01,
     "MIN_TABLE_POINTS": 500,
-    "HORIZONTAL_THRESHOLD": 0.8,
+    "HORIZONTAL_THRESHOLD": 0.95,
     "IMAGE_LOWER_RATIO": 0.6,
     
     # 增强检测参数
@@ -60,6 +60,16 @@ class EnhancedTableDetector:
             data = np.load(npz_path)
             print(f"\n加载文件: {npz_path}")
             print(f"NPZ文件键值: {list(data.keys())}")
+            
+            # # 显示每个数组的详细信息
+            # for key in data.keys():
+            #     arr = data[key]
+            #     print(f"\n数组 '{key}':")
+            #     print(f"  - 形状: {arr.shape}")
+            #     print(f"  - 数据类型: {arr.dtype}")
+            #     print(f"  - 范围: [{np.min(arr):.1f}, {np.max(arr):.1f}]")
+            #     if len(arr.shape) == 2:  # 如果是2D数组
+            #         print(f"  - 左上角5x5:\n{arr[:5, :5]}")
             
             depth_mm = None
             for key in ['depth', 'depth_mm', 'arr_0']:
@@ -428,11 +438,11 @@ def main():
             print(f"桌面高度: {result['table_height']:.3f}m")
             
             print("\n与原始结果对比:")
-            print("原始法向量: (-0.0115, 0.9824, 0.1867)")
-            print("原始偏差: 10.8°")
+            print("原始法向量: (−0.0104,0.9719,−0.2351)")
+            print("原始偏差: 13.6°")
             
             if result['deviation_angle'] < 10.8:
-                improvement = 10.8 - result['deviation_angle']
+                improvement = 13.6 - result['deviation_angle']
                 print(f"\n 改进效果: 偏差减少了 {improvement:.1f}°")
                 print(f" 精度提升: {improvement/10.8*100:.1f}%")
             else:

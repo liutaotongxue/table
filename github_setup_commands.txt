@@ -1,0 +1,23 @@
+GitHub仓库设置命令 - 请按顺序执行
+
+# 1. 首先在GitHub网站创建仓库后，复制仓库的HTTPS链接
+# 例如：https://github.com/YOUR_USERNAME/table-detection-system.git
+
+# 2. 在命令行中进入项目目录并执行以下命令：
+
+cd "C:\Users\14101\Desktop\table"
+
+# 3. 添加远程仓库（请将YOUR_USERNAME替换为你的GitHub用户名）
+git remote add origin https://github.com/YOUR_USERNAME/table-detection-system.git
+
+# 4. 检查远程仓库是否添加成功
+git remote -v
+
+# 5. 将本地main分支推送到GitHub
+git push -u origin main
+
+# 如果出现认证问题，可能需要：
+# - 使用Personal Access Token
+# - 或者配置SSH key
+
+# 完成后，访问你的GitHub仓库页面就能看到上传的代码了！
